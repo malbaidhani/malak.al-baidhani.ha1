@@ -90,7 +90,7 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-
+    //Teilaufgabe 1
     @Test
     @DisplayName("should switch the sign when pressing the negative key")
     void testToggleNegativeSign() {
@@ -104,6 +104,38 @@ class CalculatorTest {
 
         calc.pressNegativeKey();      // Negative Taste erneut drücken, Bildschirm zeigt: 4
         assertEquals("4", calc.readScreen());
+    }
+
+    //Teilaufgabe 2
+    @Test
+    @DisplayName("should keep the number when pressing equals toearly/without second number")
+    void testEqualsWithoutSecondNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressEqualsKey(); // nichts hingeschrieben (ohne eine zweite Zahl)
+
+        String expected = "2"; // sollte gleich bleiben
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display error when dividing by zero")
+    void testDivisionByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);  // eine Ziffer eingeben
+        calc.pressBinaryOperationKey("/");  // dividieren
+        calc.pressDigitKey(0);  // 0 eingeben
+        calc.pressEqualsKey();  // Aufgabe ausrechnen lassen
+
+        String expected = "Error";  // Falsches Ergebnis
+        String actual = calc.readScreen();  // Tatsächliches Ergebnis
+
+        assertEquals(expected, actual);  // wird überprüft, ob Fehler angezeigt wird
     }
 
 }
