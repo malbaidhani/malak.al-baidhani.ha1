@@ -138,5 +138,21 @@ class CalculatorTest {
         assertEquals(expected, actual);  // wird überprüft, ob Fehler angezeigt wird
     }
 
+        //Teilaufgabe 3
+        //testEqualsWithoutSecondNumber() aus Teilaufgabe 2
+        public void pressEqualsKey() {  //soll prüfen, ob eine zweite Zahl überhaupt eingegeben wurde
+            if (latestOperation.isEmpty() || waitingForSecondOperand) { //kein Ergebnis, wenn keine zweite Zahl eingegeben wurde
+            waitingForSecondOperand = false;
+            return;
+        }
+
+        //testDivisionByZero() aus Teilaufgabe 2
+            // Division durch Null
+            if (latestOperation.equals("/") && currentValue == 0) {
+                screen = "Error";
+                return;
+            }
+
+        }
 }
 
