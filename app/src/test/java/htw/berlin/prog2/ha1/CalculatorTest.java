@@ -90,5 +90,21 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should switch the sign when pressing the negative key")
+    void testToggleNegativeSign() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);        // Ziffer eingeben, Bildschirm zeigt dann 4
+
+        
+        calc.pressNegativeKey();      // +/- Taste drücken, Bildschirm zeigt dann -4
+        assertEquals("-4", calc.readScreen());
+
+        calc.pressNegativeKey();      // Negative Taste erneut drücken, Bildschirm zeigt: 4
+        assertEquals("4", calc.readScreen());
+    }
+
 }
 
